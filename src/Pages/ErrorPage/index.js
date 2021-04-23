@@ -1,5 +1,5 @@
 import React from "react";
-import ErrorImg from "../../images/Error.png";
+import ErrorImg from "../../images/error.png";
 import { useHistory } from "react-router-dom";
 import {
   Button,
