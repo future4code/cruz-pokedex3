@@ -2,7 +2,7 @@ import React, { useContext }  from 'react';
 import { useHistory } from "react-router-dom";
 import PokeCard from "../../components/PokeCard"
 import { GlobalStateContext } from "../../global/GlobalStateContext";
-
+import {Cards} from '../../global/styles'
 import { goToHomePage } from "../../routes/coordinator";
 
 export default  function PokedexPage() {
@@ -25,18 +25,20 @@ export default  function PokedexPage() {
               Ir para HomePage
         </button>
       <h1>Essa é a Pokedex do Pokemon</h1>
-      <div>Meu card</div>
-      {pokedex.length > 0 ? pokedex.map((pokemon, index)=>{
-      return(
-        <PokeCard key={index}
-        pokemon={pokemon}
-        pokedex={pokedex}
-        name={pokemon.name}
-        url={pokemon.url }
-        removePokemon = {removePokemon}
-        index ={index}/>
-      )
-    }): (<div> Pokedex Vazia</div>)}
+      
+      <Cards>
+        {pokedex.length > 0 ? pokedex.map((pokemon, index)=>{
+        return(
+          <PokeCard key={index}
+          pokemon={pokemon}
+          pokedex={pokedex}
+          name={pokemon.name}
+          url={pokemon.url }
+          removePokemon = {removePokemon}
+          index ={index}/>
+        )
+      }): (<div> Pokedex Vazia</div>)}
+    </Cards>
   </div>
   );
 }

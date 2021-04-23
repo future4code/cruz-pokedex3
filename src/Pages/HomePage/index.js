@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import { goToPokedexPage } from "../../routes/coordinator";
 import PokeCard from "../../components/PokeCard"
 import { GlobalStateContext } from "../../global/GlobalStateContext";
+import {Cards} from '../../global/styles'
 
 
 export default function HomePage() {
@@ -26,17 +27,18 @@ export default function HomePage() {
               Ir para Pokedex
         </button>
       <h1>Essa é a HomePage do Pokemon</h1>
-      <div>Meu card</div>
+      <Cards>
       {pokemons && pokemons.map((pokemon, index)=>{
-      return(
-        <PokeCard key={index}
-        pokemon={pokemon}
-        name={pokemon.name}
-        url={pokemon.url}
-        addPokemonToPokedex = {addPokemonToPokedex}
-        index ={index}/>
-      )
-    })}
+        return(
+          <PokeCard key={index}
+          pokemon={pokemon}
+          name={pokemon.name}
+          url={pokemon.url}
+          addPokemonToPokedex = {addPokemonToPokedex}
+          index ={index}/>
+        )
+      })}
+    </Cards>
   </div>
   );
 }
