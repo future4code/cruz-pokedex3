@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Container, Img } from "./styles";
 import axios from "axios";
-import { goToPokeDetailsPage } from "../../routes/coordinator";
+import {useHistory} from 'react-router-dom';
 
 export default function PokeCard(props) {
   const [pokePicture, setPokePicture] = useState([]);
+  const history = useHistory();
+  
+  const goToPokeDetailsPage = (name) =>{
+    history.push(`/pokeDetailsPage/${name}`)
+  }
 
   useEffect(() => {
     getPokePicture();
