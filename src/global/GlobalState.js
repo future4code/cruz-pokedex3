@@ -4,22 +4,33 @@ import { GlobalStateContext } from "./GlobalStateContext";
 import { BaseUrl } from "../constants/BaseUrl";
 
 const GlobalState = (props) => {
-    const [pokemons, setPokemons] = useState([])
-    const [pokedex, setPokedex] = useState([])
+  const [pokemons, setPokemons] = useState([])
+  const [pokedex, setPokedex] = useState([])
 
   useEffect(() => {
-    getPokemons();
-  }, []);
-    const getPokemons = () =>{
-        axios
-        .get(BaseUrl)
-        .then((res) => {
-        setPokemons(res.data.results);
-        })
-        .catch((err) => {
-        console.log(err);
-        });
+    
+    const storagePokedex = localStorage.getItem("savedPokedex")
+    if (storagePokedex){
+      setPokedex(JSON.parse(storagePokedex))
     }
+    const storagePokemons = localStorage.getItem("savedPokemons")
+    if (storagePokemons){
+      setPokemons(JSON.parse(storagePokemons))
+    } else {
+      getPokemons();
+    }
+  }, []);
+    
+  const getPokemons = () =>{
+    axios
+    .get(BaseUrl)
+    .then((res) => {
+    setPokemons(res.data.results);
+    })
+    .catch((err) => {
+    console.log(err);
+    });
+  }
 
   return (
     <GlobalStateContext.Provider value={{pokemons, setPokemons, pokedex, setPokedex}}>

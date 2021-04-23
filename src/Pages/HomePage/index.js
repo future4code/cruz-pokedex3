@@ -10,10 +10,12 @@ export default function HomePage() {
   const { pokemons, pokedex, setPokedex} = useContext(GlobalStateContext);
   const history = useHistory('');
   
-  const addPokemon = (pokemon, index) => {
+  const addPokemonToPokedex = (pokemon, index) => {
     let newPokedex = [...pokedex, pokemon]
     pokemons.splice(index, 1)
     setPokedex(newPokedex)
+    localStorage.setItem("savedPokedex", JSON.stringify(newPokedex))
+    localStorage.setItem("savedPokemons", JSON.stringify(pokemons))
     alert('Pokemon adicionado a  sua Pokedex')
   }
   console.log(pokemons)
@@ -28,9 +30,10 @@ export default function HomePage() {
       {pokemons && pokemons.map((pokemon, index)=>{
       return(
         <PokeCard key={index}
+        pokemon={pokemon}
         name={pokemon.name}
-        url={pokemon.url }
-        addPokemon = {addPokemon}
+        url={pokemon.url}
+        addPokemonToPokedex = {addPokemonToPokedex}
         index ={index}/>
       )
     })}

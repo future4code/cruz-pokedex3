@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Example  from '../../images/Error.png'
 import { Container, Img } from './styles';
 import axios from 'axios';
 import {goToPokeDetailsPage} from '../../routes/coordinator'
@@ -27,15 +26,13 @@ export default function PokeCard(props) {
           <Container>
             <Img src={pokePicture} alt={"exemplo da foto do pokemon"}/>
             <h1> {props.name}</h1>
-            {console.log(props.name)}
-
             {props.pokedex ?(
                 <div>
-                    <button >Remover</button>
+                    <button onClick={()=> props.removePokemon(props.pokemon,props.index)}>Remover</button>
                     <button onClick={()=>goToPokeDetailsPage(props.name)}>Detalhes</button>
                 </div>
             ):(<div>
-                    <button>Capturar</button>
+                    <button onClick={()=> props.addPokemonToPokedex(props.pokemon,props.index)}>Capturar</button>
                     <button onClick={()=>goToPokeDetailsPage(props.name)}>Detalhes</button>
                 </div>)
         }
